@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 
 api_urlpatterns = [
     # path('category/', include('apps.categories.api.urls')),
-    path('blog/', include('apps.rooms.api.urls')),
+    path('rooms/', include('apps.rooms.api.urls')),
 ]
 
 urlpatterns = [
