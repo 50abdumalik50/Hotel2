@@ -31,13 +31,25 @@ class RoomCreateSerializer(serializers.ModelSerializer):
         ]
 
 
-# class BookingSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Booking
-#         fields = [
-#             'user',
-#             'room',
-#             'check_in_date',
-#             'check_out_date',
-#             'date_of_reservation',
-#         ]
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = [
+            'user',
+            'room',
+            'check_in_date',
+            'check_out_date',
+            'date_of_reservation',
+        ]
+
+
+class BookingCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = [
+            'user',
+            'room',
+            'check_in_date',
+            'check_out_date',
+            'date_of_reservation',
+        ]

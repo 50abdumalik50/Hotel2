@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 
-from apps.rooms.api.serializers import RoomSerializer, RoomCreateSerializer
+from apps.rooms.api.serializers import RoomSerializer, RoomCreateSerializer, BookingSerializer, BookingCreateSerializer
 from apps.rooms.models import Room, Booking
 
 
@@ -37,12 +37,38 @@ class RoomUpdateDeleteRetrieveAPIView(generics.RetrieveUpdateDestroyAPIView):
 #     serializer_class = RoomSerializer
 
 
-# class BookingListCreateView(generics.ListCreateAPIView):
+class BookingListCreateView(generics.ListCreateAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+def get_serializers_class(self):
+    if self.action in ['create']:
+        return BookingCreateSerializer
+    elif self.action == 'retrieve':
+        return BookingSerializer
+    return self.serializer_class
+
+
+class BookingRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+
+
+# class BookingsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Room.objects.all()
+#     serializer_class = RoomSerializer
+
+
+# class BookingRetrieveAPIView(generics.RetrieveAPIView):
+#     queryset = Room.objects.all()
+#     serializer_class = RoomSerializer
+#
+# class BookingUpdateView(generics.UpdateAPIView):
 #     queryset = Booking.objects.all()
 #     serializer_class = BookingSerializer
 #
 #
-# # Retrieve, Update and Delete Booking Views
-# class BookingDetailView(generics.RetrieveUpdateDestroyAPIView):
+# class BookingDestroyView(generics.DestroyAPIView):
 #     queryset = Booking.objects.all()
 #     serializer_class = BookingSerializer
